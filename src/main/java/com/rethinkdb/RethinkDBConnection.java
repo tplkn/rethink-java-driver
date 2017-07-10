@@ -2,14 +2,10 @@ package com.rethinkdb;
 
 import com.rethinkdb.proto.Q2L;
 import com.rethinkdb.response.DBResultFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RethinkDBConnection {
-    private static final Logger logger = LoggerFactory.getLogger(RethinkDBConnection.class);
 
     private static final AtomicInteger tokenGenerator = new AtomicInteger();
 
@@ -148,7 +144,6 @@ public class RethinkDBConnection {
     }
 
     private <T> Q2L.Response execute(Q2L.Query query) {
-        logger.debug("running {} ", query);
         socket.write(query.toByteArray());
         return socket.read();
     }
